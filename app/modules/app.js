@@ -33,7 +33,6 @@ bagcilar.module('app', function () {
 
 	return {
 		bindEvents : bindEvents
-
 	}
 
 }, true);
