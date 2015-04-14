@@ -80,7 +80,39 @@ bagcilar.module('utils', function () {
 		*/
 		getCookie : function (key) {
 			return $.cookie(key);
-		}
+		},
+
+		/**
+		* isUndefined is a method to check if the argument is undefined or not
+		* @param <Object> obj
+		*/
+		isUndefined : function(obj) {
+      return (typeof obj === 'undefined');
+    },
+
+		/**
+		* isNull is a method to check if the argument is null or not
+		* @param <Object> obj
+		*/
+    isNull : function (obj) {
+      return (typeof obj === null);
+    },
+
+		/**
+		* isEmptyString is a method to check if the argument is empty or not
+		* @param <Object> str
+		*/
+    isEmptyString : function (str) {
+      return (obj === '');
+    },
+
+		/**
+		* isEmptyArray is a method to check if the argument is empty or not
+		* @param <Array> arr
+		*/
+    isEmptyArray : function (arr) {
+      return (arr.length === 0);
+    }
 
 	}
 
