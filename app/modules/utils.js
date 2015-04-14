@@ -99,18 +99,18 @@ bagcilar.module('utils', function () {
     },
 
 		/**
-		* isEmptyString is a method to check if the argument is empty or not
+		* isStringEmpty is a method to check if the argument is empty or not
 		* @param <Object> str
 		*/
-    isEmptyString : function (str) {
-      return (obj === '');
+    isStringEmpty : function (str) {
+      return (str === '');
     },
 
 		/**
-		* isEmptyArray is a method to check if the argument is empty or not
+		* isArrayEmpty is a method to check if the argument is empty or not
 		* @param <Array> arr
 		*/
-    isEmptyArray : function (arr) {
+    isArrayEmpty : function (arr) {
       return (arr.length === 0);
     }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * bagcilar : This is the main controller of the whole app
+ * bagcilar : A tiny modular application mediator project
  *
  */
 
@@ -43,6 +43,7 @@ var bagcilar = (function () {
 		/**
 		 * start() is a module initializing method
 		 * that makes modules starting to work
+		 *
 		 * @param <String> name
 		 */
 		start : function (name) {
@@ -56,6 +57,7 @@ var bagcilar = (function () {
 		/**
 		 * init() is a main module initializing method
 		 * that makes modules starting to work
+		 *
 		 * @param <String> mainModule
 		 */
 		init : function(mainModule){
