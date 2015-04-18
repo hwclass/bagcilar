@@ -9,6 +9,30 @@ bagcilar.module('utils', function () {
 	return {
 
 		/**
+		* addEvent is the a method to make event bindings
+		* @param <Object> el
+		* @param <String> url
+		* @param <Function> fn
+		*/
+		addEvent : function (el, event, fn) {
+      function listenHandler(e) {
+        var ret = fn.apply(this, arguments);
+        if (ret === false) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+        return(ret);
+      }
+      if (el.addEventListener) {
+        el.addEventListener(event, listenHandler, false);
+      } else if (el.attachEvent) {
+        el.attachEvent("on" + type, fn);
+      } else {
+        el.attachEvent("on" + event, attachHandler);
+      }
+    },
+
+		/**
 		* doRequest is the a method to make ajax requests
 		* @param <String> type
 		* @param <String> url

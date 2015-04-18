@@ -48,7 +48,7 @@ var bagcilar = (function () {
 		 */
 		start : function (name) {
 			for(var key in MODULES[name]) {
-			  if ( MODULES[name][key] instanceof Function ) {
+			  if (MODULES[name][key] instanceof Function) {
 			  	MODULES[name][key]();
 			  }
 			}
