@@ -22,37 +22,37 @@ var bagcilar = (function () {
 
 	return {
 
-			/**
-			 * module() is a module creation method
-			 *
-			 * @param <String> name
-			 * @param <Function> fn
-			 * @param <Boolean> initOnLoad
-			 */
-			module : function (name, fn, initOnLoad) {
-				MODULES[name] = new fn();
-				if (name === mainModule) {
-					this.init(mainModule);
-				} else {
-					if (initOnLoad) {
-						this.start(name);
-					}
+		/**
+		 * module() is a module creation method
+		 *
+		 * @param <String> name
+		 * @param <Function> fn
+		 * @param <Boolean> initOnLoad
+		 */
+		module : function (name, fn, initOnLoad) {
+			MODULES[name] = new fn();
+			if (name === mainModule) {
+				this.init(mainModule);
+			} else {
+				if (initOnLoad) {
+					this.start(name);
 				}
-			},
+			}
+		},
 
-			/**
-			 * start() is a module initializing method
-			 * that makes modules starting to work
-			 *
-			 * @param <String> name
-			 */
-			start : function (name) {
-				for(var key in MODULES[name]) {
-				  if (MODULES[name][key] instanceof Function) {
-				  	MODULES[name][key]();
-				  }
+		/**
+		 * start() is a module initializing method
+		 * that makes modules starting to work
+		 *
+		 * @param <String> name
+		 */
+		start : function (name) {
+			for(var key in MODULES[name]) {
+				if (MODULES[name][key] instanceof Function) {
+					MODULES[name][key]();
 				}
-			},
+			}
+		},
 
 			/**
 			 * init() is a main module initializing method
