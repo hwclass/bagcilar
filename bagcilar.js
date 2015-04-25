@@ -64,6 +64,6 @@ var bagcilar = (function () {
       MODULES[mainModule]['init'];
     }
 
-	}
+  }
 
 })();
