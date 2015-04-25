@@ -6,18 +6,19 @@
  */
 bagcilar.module('main', function () {
 
-	var newUser = null;
+  var self = this;
+
+  var config = MODULES.config;
+  var utils = MODULES.utils;
+
+  var newUser = null;
 
   /**
   * setUserValues is a method to set values getting an instance of User model
   * @param N/A
   */
   var setUserValues = function(){
-    var userName = MODULES['config'].el.name.val();
-    var userSurName = MODULES['config'].el.surName.val();
-    var userEmail = MODULES['config'].el.email.val();
-    var userPassword = MODULES['config'].el.password.val();
-    newUser = new User(userName, userSurName, userEmail, userPassword);
+    return new User(config.el.name.val(), config.el.surName.val(), config.el.email.val(), config.el.password.val());
   }
 
   /**
@@ -25,12 +26,12 @@ bagcilar.module('main', function () {
   * @param N/A
   */
   var register = function(){
-    MODULES['utils']['doRequest'](MODULES['config'].AJAX.METHODS.post, MODULES['config'].URLS.register, {user : newUser}, MODULES['config'].DATA_TYPES.json, function (message) {
+    utils.doRequest(config.AJAX.METHODS.post, config.URLS.register, {user : newUser}, config.DATA_TYPES.json, function (message) {
       console.log(message);
-      MODULES.utils.setLocalItem('newUser', newUser);
+      utils.setLocalItem('newUser', newUser);
     }, function (message) {
       console.log(message);
-      MODULES.utils.setLocalItem('newUser', newUser);
+      utils.setLocalItem('newUser', newUser);
     }, function (message) {
       console.log(message);
     });
@@ -42,16 +43,16 @@ bagcilar.module('main', function () {
   * @param <String> password
   */
   var login = function(email, password){
-    var userLoginEmail = MODULES['config'].el.loginEmail.val();
-    var userLoginPassword = MODULES['config'].el.loginPassword.val();
-    var localUser = MODULES.utils.getLocalItem('newUser');
+    var userLoginEmail = config.el.loginEmail.val();
+    var userLoginPassword = config.el.loginPassword.val();
+    var localUser = utils.getLocalItem('newUser');
     if (localUser.email === userLoginEmail && localUser.password === userLoginPassword) {
-      MODULES.utils.setCookie('userLoginEmail', userLoginEmail);
-      MODULES.utils.setCookie('userLoginPassword', userLoginPassword);
-      console.log(MODULES.config.MESSAGES.LOGIN_SUCCESS);
-      MODULES.main.hideRegisterAndLoginButton();
+      utils.setCookie('userLoginEmail', userLoginEmail);
+      utils.setCookie('userLoginPassword', userLoginPassword);
+      console.log(config.MESSAGES.LOGIN_SUCCESS);
+      self.hideRegisterAndLoginButton();
     } else {
-      console.error(MODULES.config.MESSAGES.LOGIN_ERROR);
+      console.error(config.MESSAGES.LOGIN_ERROR);
     }
   };
 
@@ -60,8 +61,8 @@ bagcilar.module('main', function () {
   * @param N/A
   */
   var hideRegisterAndLoginButton = function(){
-    $(MODULES.config.el.loginAndRegisterModalButton).hide();
-    $(MODULES.config.el.loginModalHide).modal('toggle');
+    $(config.el.loginAndRegisterModalButton).hide();
+    $(config.el.loginModalHide).modal('toggle');
   }
 
   /**
@@ -69,7 +70,7 @@ bagcilar.module('main', function () {
   * @param N/A
   */
   var emptyWelcomeUserInfo = function(){
-    $(MODULES.config.el.welcomeUserInfo).html("");
+    $(config.el.welcomeUserInfo).html("");
   }
 
   /**
@@ -77,7 +78,7 @@ bagcilar.module('main', function () {
   * @param N/A
   */
   var hideLoginModalButton = function(){
-    $(MODULES.config.el.loginModalButton).hide();
+    $(config.el.loginModalButton).hide();
   }
 
   /**
@@ -85,7 +86,7 @@ bagcilar.module('main', function () {
   * @param N/A
   */
   var hideRegisterModalButton = function(){
-    $(MODULES.config.el.registerModalButton).hide();
+    $(config.el.registerModalButton).hide();
   }
 
   /**
