@@ -75,8 +75,38 @@ var bagcilar = (function () {
     */
     init : function(mainModule){
       MODULES[mainModule]['init'];
-    }
+    },
 
-  }
+    /**
+    * subscribe() is a subscribing method to listen publishing events
+    *
+    * @param <String> topic
+    * @param <Function> listener
+    */
+    subscribe : function (topic, listener) {
+      if(!topics[topic]) topics[topic] = { queue: [] };
+      var index = topics[topic].queue.push(listener);
+      return (function(index) {
+        return {
+          remove: function() {
+            delete topics[index];
+          }
+        }
+      })(index);
+    },
+
+    /**
+    * publish() is a sending data method to subscriptions listening publishing events
+    *
+    * @param <String> topic
+    * @param <Object> info
+    */
+    publish : function (topic, info) {
+      if(!topics[topic] || !topics[topic].queue.length) return;
+      var items = topics[topic].queue;
+      for(var x = 0; x < items.length; x++) {
+        items[x](info || {});
+      }
+    }
 
 })();
