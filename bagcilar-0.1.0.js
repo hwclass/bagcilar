@@ -1,8 +1,21 @@
 'use strict';
 
-/**
- * bagcilar : A tiny modular application mediator project
+ /*!
+ * bagcilar.js. A tiny modular application mediator project
  *
+ * Copyright (c) 2015 Barış Güler
+ * http://hwclass.in
+ *
+ * Licensed under MIT
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ *
+ * Launch  : April 2015
+ * Version : 0.1.0
+ * Released: April 1st, 2015
+ *
+ *
+ * manages the view states and other functionalities in applications
  */
 
 /**
