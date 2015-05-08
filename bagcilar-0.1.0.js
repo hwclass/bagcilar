@@ -108,5 +108,7 @@ var bagcilar = (function () {
         items[x](info || {});
       }
     }
+    
+  }
 
 })();
