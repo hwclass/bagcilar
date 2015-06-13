@@ -1,8 +1,9 @@
 'use strict';
 
 /**
-* User is the model for users
+* module method for initializing app module
 * @param <String> name
+* @param <Function> callback
 */
 bagcilar.module('app', function () {
 
