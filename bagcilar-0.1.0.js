@@ -74,7 +74,7 @@ var bagcilar = (function () {
     * @param <String> mainModule
     */
     init : function(mainModule){
-      MODULES[mainModule]['init'];
+      MODULES[mainModule]['init']();
     },
 
     /**
