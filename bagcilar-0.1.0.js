@@ -24,6 +24,8 @@
  */
 var MODULES = MODULES || {};
 
+var TOPICS = TOPICS || {};
+
 /**
  * mediator main module creation object
  *
@@ -84,12 +86,12 @@ var bagcilar = (function () {
     * @param <Function> listener
     */
     subscribe : function (topic, listener) {
-      if(!topics[topic]) topics[topic] = { queue: [] };
-      var index = topics[topic].queue.push(listener);
+      if(!TOPICS[topic]) TOPICS[topic] = { queue: [] };
+      var index = TOPICS[topic].queue.push(listener);
       return (function(index) {
         return {
           remove: function() {
-            delete topics[index];
+            delete TOPICS[index];
           }
         }
       })(index);
@@ -102,8 +104,8 @@ var bagcilar = (function () {
     * @param <Object> info
     */
     publish : function (topic, info) {
-      if(!topics[topic] || !topics[topic].queue.length) return;
-      var items = topics[topic].queue;
+      if(!TOPICS[topic] || !TOPICS[topic].queue.length) return;
+      var items = TOPICS[topic].queue;
       for(var x = 0; x < items.length; x++) {
         items[x](info || {});
       }
