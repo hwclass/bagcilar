@@ -29,29 +29,32 @@ var TOPICS = TOPICS || {};
 /**
  * mediator main module creation object
  *
- * @param <Function> IIFE
  */
 var bagcilar = (function () {
-
-	var mainModule = 'main';
 
 	return {
 
     /**
     * module() is a module creation method
     *
-    * @param <String> name
-    * @param <Function> fn
-    * @param <Boolean> initOnLoad
+    * @param {String} name
+    * @param {Function} fn
+    * @param {Boolean} initOnLoad
     */
     module : function (name, fn, initOnLoad) {
+      var mainModule = new String('main');
+      name = new String(name);
       MODULES[name] = new fn();
-      if (name === mainModule) {
-        this.init(mainModule);
-      } else {
-        if (initOnLoad) {
-          this.start(name);
+      if (typeof name !== 'undefined' && typeof name !== null) {
+        if (name === mainModule) {
+          this.init(mainModule);
+        } else {
+          if (initOnLoad) {
+            this.start(name);
+          }
         }
+      } else {
+        console.log('Please, specify a module name and try again.');
       }
     },
 
@@ -59,7 +62,7 @@ var bagcilar = (function () {
     * start() is a module initializing method
     * that makes modules starting to work
     *
-    * @param <String> name
+    * @param {String} name
     */
     start : function (name) {
       for(var key in MODULES[name]) {
@@ -73,7 +76,7 @@ var bagcilar = (function () {
     * init() is a main module initializing method
     * that makes modules starting to work
     *
-    * @param <String> mainModule
+    * @param {String} mainModule
     */
     init : function(mainModule){
       MODULES[mainModule]['init']();
@@ -82,8 +85,8 @@ var bagcilar = (function () {
     /**
     * subscribe() is a subscribing method to listen publishing events
     *
-    * @param <String> topic
-    * @param <Function> listener
+    * @param {String} topic
+    * @param {Function} listener
     */
     subscribe : function (topic, listener) {
       if(!TOPICS[topic]) TOPICS[topic] = { queue: [] };
@@ -100,8 +103,8 @@ var bagcilar = (function () {
     /**
     * publish() is a sending data method to subscriptions listening publishing events
     *
-    * @param <String> topic
-    * @param <Object> info
+    * @param {String} topic
+    * @param {Object} info
     */
     publish : function (topic, info) {
       if(!TOPICS[topic] || !TOPICS[topic].queue.length) return;
