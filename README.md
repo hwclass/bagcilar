@@ -1,7 +1,7 @@
 bagcilar
 ==============================
 
-A tiny modular application mediator project
+It was while ago when this project had been started. A nice memory with a tiny modular application mediator project.
 
 ### Module Usage
 <pre lang="javascript">
@@ -9,19 +9,13 @@ A tiny modular application mediator project
 bagcilar.module('moduleName', function () {
 
   var testMethod = function (someArg) {
-
   	console.log(someArg);
-
   }
 
   var dummyMethod = function (someArg) {
-
   	return (function (returnedValue) {
-
   		return returnedValue;
-
   	})(someArg);
-
   }
 
   return {
